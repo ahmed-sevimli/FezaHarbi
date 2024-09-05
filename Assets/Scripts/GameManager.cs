@@ -8,22 +8,17 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    private int kill_count;
+    private int killCount;
+    private int currTargetCount;
     private bool debugModeOn = false;
+    private bool playerIsDead = false;
 
     [SerializeField]
     private Dropdown levelsDropdown;
     private int selectedLevel;
+    private int lastUnlockedLevel=0;
     private Box box;
     private Character _char;
-
-    public delegate void LevelSelector(int requestedLevel);
-    public event LevelSelector LevelSelect;
-    public delegate void ManageGame();
-    public event ManageGame LevelPass;
-    public event ManageGame LevelLost;
-    public event ManageGame StartTheGame;
-    public event ManageGame RestartTheGame;
 
     void Awake()
     {
@@ -39,12 +34,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     void Update()
     {
         if(debugModeOn)
@@ -52,12 +41,12 @@ public class GameManager : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.Alpha1))
             {
                 Debug.Log("You Won!!!");
-                LevelPass();
+                NextLevel();
             }
             else if(Input.GetKeyDown(KeyCode.Alpha2))
             {
                 Debug.Log("You Lost!!!");
-                LevelLost();
+                LoseLevel();
             }
         }
     }
@@ -76,9 +65,11 @@ public class GameManager : MonoBehaviour
 
     void CheckState(string name, string type)
     {
+        //Check for win and loss
         Debug.Log(name + " has been destroyed");
         Invoke("WinState",1f);
         Invoke("LoseState",1f);
+
         //Unsubscribe
         Debug.Log("Checkstate " + type);
         if(type == "Box")
@@ -87,27 +78,60 @@ public class GameManager : MonoBehaviour
         }
         else if(type == "Character")
         {
+            //Check if the player is dead
+            if(name == "Player")
+            {
+                playerIsDead = true;
+            }
             _char.CharDestruction -= CheckState;
         }
     }
 
+    public void LoadLevel(string levelToLoad)
+    {
+        SceneManager.LoadScene(levelToLoad);
+        //reset counts
+        killCount = 0;
+        currTargetCount = LevelController.GetTargetCount();
+    }
+
     public void StartGame()
     {
-		if(StartTheGame != null)
-        {
-            StartTheGame();
-        }
+		//Debug.Log(LevelController.GetActiveLevel() + " is ActiveScene");
+		LoadLevel("Level1");
     }
 
     void RestartGame()
     {
-		if(RestartTheGame != null)
+		//Debug.Log(LevelController.GetActiveLevel() + " is ActiveScene");
+		LoadLevel("Level3");
+    }
+
+    void LoseLevel()
+    {
+        LoadLevel("GameOver");
+    }
+
+    void NextLevel()
+    {
+        LoadLevel(LevelController.GetNextLevel());
+    }
+
+    void SelectLevel()
+    {
+        //Code for dropdown
+        //requestedLevel = dropdown.choice;
+        
+        //unlock all levels
+        if(debugModeOn)
         {
-            RestartTheGame();
+            lastUnlockedLevel = 8;
         }
-        else
+
+        //try and load selected level
+        if(selectedLevel <= lastUnlockedLevel)
         {
-            Debug.Log("RestartGame is NULL!!!!");
+            LoadLevel("Level" + selectedLevel);
         }
     }
 
@@ -115,56 +139,29 @@ public class GameManager : MonoBehaviour
     {
         debugModeOn = !debugModeOn;
     }
-
-    public void GoToSelectedLevel()
-    {
-        LevelSelect(selectedLevel);
-    }
-
-    int GetEnemyCount()
-    {
-        return 0;
-    }
     
     void WinState()
     {
         Debug.Log("WinState Check");
-        if(String.Equals(SceneManager.GetActiveScene().name,"Level1")
-        || String.Equals(SceneManager.GetActiveScene().name,"Level2"))
-        {
-            if(!GameObject.FindWithTag("Cubes"))
-            {
-                Debug.Log("You Won!!!");
-                if(LevelPass != null)
-                {
-                    LevelPass();
-                }
-            }
-        }
-        else if(!GameObject.FindWithTag("Enemies"))
+        if(killCount >= currTargetCount)
         {
             Debug.Log("You Won!!!");
-            if(LevelPass != null)
-            {
-                Debug.Log("Not null");
-                LevelPass();
-            }
+            LoadLevel(LevelController.GetNextLevel());
         }
         else
         {
-            Debug.Log("No cube, enemies still at large.");
+            Debug.Log("Not a win yet");
         }
     }
 
     void LoseState()
     {
-        if(!GameObject.FindWithTag("Player"))
+        if(playerIsDead)
         {
             Debug.Log("You Lost!!!");
-            if(LevelLost != null)
-            {
-                LevelLost();
-            }
+            //Debug.Log(LevelController.GetActiveLevel() + " is ActiveScene");
+		    LoseLevel();
+            playerIsDead = false;
         }
     }
 
