@@ -1027,6 +1027,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2e6fd269ea697e43b9767f2cee13a94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activeLevel: 
+  nextLevel: Level5
+  targetCount: 0
 --- !u!4 &441119936
 Transform:
   m_ObjectHideFlags: 0
@@ -5288,8 +5291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67b71c6057b78a14d89a78ba8530436c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startButton: {fileID: 0}
-  restartButton: {fileID: 0}
+  levelsDropdown: {fileID: 0}
 --- !u!4 &2015613349
 Transform:
   m_ObjectHideFlags: 0
