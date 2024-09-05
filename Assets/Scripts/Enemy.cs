@@ -15,18 +15,17 @@ public class Enemy : Character
         characterShot = GameObject.Find("EnemyShot");
         midHealth = Resources.Load("ball_mat1", typeof(Material)) as Material;
         lowHealth = Resources.Load("ball_mat3", typeof(Material)) as Material;
-        
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
         //Enemy turn control
         if(String.Equals(LevelController.Instance.GetActiveLevel(),"Level5")
         || String.Equals(LevelController.Instance.GetActiveLevel(),"Level6"))
         {
             enemyCanTurn = true;
         }
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
         GameManager.Instance.SubscribeCharacterEvent(this);
         if(String.Equals(LevelController.Instance.GetActiveLevel(),"Level5") || String.Equals(LevelController.Instance.GetActiveLevel(),"Level6"))
         {

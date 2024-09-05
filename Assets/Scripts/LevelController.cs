@@ -14,6 +14,8 @@ public class LevelController : MonoBehaviour
 
     void Awake()
     {
+        SetActiveLevel();
+        
         //Singleton mimarisi
         if (Instance != null && Instance != this)
         { 
@@ -25,19 +27,16 @@ public class LevelController : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        SetActiveLevel();
-    }
-
     public string GetActiveLevel()
     {
+        Debug.Log("Someone is getting " + activeLevel);
         return activeLevel;
     }
 
     public void SetActiveLevel()
     {
         activeLevel = SceneManager.GetActiveScene().name;
+        Debug.Log("Active Level is " + activeLevel);
     }
 
     public string GetNextLevel()
