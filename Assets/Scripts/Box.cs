@@ -14,15 +14,29 @@ public class Box : MonoBehaviour, Destructible
     public Action<string, string> OnBoxDestroy;
     void Awake()
     {
-        boxBody = GetComponent<Rigidbody>();
-        midHealth = Resources.Load("ball_mat1", typeof(Material)) as Material;
-        lowHealth = Resources.Load("ball_mat3", typeof(Material)) as Material;
+        // boxBody = GetComponent<Rigidbody>();
+        // midHealth = Resources.Load("ball_mat1", typeof(Material)) as Material;
+        // lowHealth = Resources.Load("ball_mat3", typeof(Material)) as Material;
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        // boxBody.AddRelativeForce(new Vector3(1260f, 680f, 340f));
+        // if(String.Equals(SceneManager.GetActiveScene().name,"Level1")
+        // || String.Equals(SceneManager.GetActiveScene().name,"Level2"))
+        // {
+        //     GameManager.Instance.SubscribeBoxAction(this);
+        // }
+    }
+
+    public void Init()
+    {
+        boxBody = GetComponent<Rigidbody>();
+        midHealth = Resources.Load("ball_mat1", typeof(Material)) as Material;
+        lowHealth = Resources.Load("ball_mat3", typeof(Material)) as Material;
         boxBody.AddRelativeForce(new Vector3(1260f, 680f, 340f));
+
         if(String.Equals(SceneManager.GetActiveScene().name,"Level1")
         || String.Equals(SceneManager.GetActiveScene().name,"Level2"))
         {
