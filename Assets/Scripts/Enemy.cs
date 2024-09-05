@@ -17,8 +17,8 @@ public class Enemy : Character
         lowHealth = Resources.Load("ball_mat3", typeof(Material)) as Material;
         
         //Enemy turn control
-        if(String.Equals(LevelController.GetActiveLevel(),"Level5")
-        || String.Equals(LevelController.GetActiveLevel(),"Level6"))
+        if(String.Equals(LevelController.Instance.GetActiveLevel(),"Level5")
+        || String.Equals(LevelController.Instance.GetActiveLevel(),"Level6"))
         {
             enemyCanTurn = true;
         }
@@ -28,7 +28,7 @@ public class Enemy : Character
     void Start()
     {
         GameManager.Instance.SubscribeCharacterEvent(this);
-        if(String.Equals(LevelController.GetActiveLevel(),"Level5") || String.Equals(LevelController.GetActiveLevel(),"Level6"))
+        if(String.Equals(LevelController.Instance.GetActiveLevel(),"Level5") || String.Equals(LevelController.Instance.GetActiveLevel(),"Level6"))
         {
             fire_period = fire_period * 2;
         }

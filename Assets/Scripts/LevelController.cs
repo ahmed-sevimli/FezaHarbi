@@ -7,16 +7,30 @@ using UnityEngine.UI;
 
 public class LevelController : MonoBehaviour
 {
-    public static string activeLevel;
-    public static string nextLevel;
-    public static int targetCount;
+    public static LevelController Instance;
+    public string activeLevel;
+    public string nextLevel;
+    public int targetCount;
+
+    void Awake()
+    {
+        //Singleton mimarisi
+        if (Instance != null && Instance != this)
+        { 
+            Destroy(this);
+        }
+        else 
+        { 
+            Instance = this; 
+        }
+    }
 
     void Start()
     {
         SetActiveLevel();
     }
 
-    public static string GetActiveLevel()
+    public string GetActiveLevel()
     {
         return activeLevel;
     }
@@ -26,13 +40,13 @@ public class LevelController : MonoBehaviour
         activeLevel = SceneManager.GetActiveScene().name;
     }
 
-    public static string GetNextLevel()
+    public string GetNextLevel()
     {
         //Next Level ataması UI üzerinden yapılır
         return nextLevel;
     }
 
-    public static int GetTargetCount()
+    public int GetTargetCount()
     {
         return targetCount;
     }

@@ -92,7 +92,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(levelToLoad);
         //reset counts
         killCount = 0;
-        currTargetCount = LevelController.GetTargetCount();
+        currTargetCount = LevelController.Instance.GetTargetCount();
     }
 
     public void StartGame()
@@ -114,7 +114,7 @@ public class GameManager : MonoBehaviour
 
     void NextLevel()
     {
-        LoadLevel(LevelController.GetNextLevel());
+        LoadLevel(LevelController.Instance.GetNextLevel());
     }
 
     void SelectLevel()
@@ -146,7 +146,7 @@ public class GameManager : MonoBehaviour
         if(killCount >= currTargetCount)
         {
             Debug.Log("You Won!!!");
-            LoadLevel(LevelController.GetNextLevel());
+            LoadLevel(LevelController.Instance.GetNextLevel());
         }
         else
         {
