@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    public Text debugText;
     private int killCount;
     private int currTargetCount;
     private bool debugModeOn = false;
@@ -136,6 +137,14 @@ public class GameManager : MonoBehaviour
     public void ChangeDebugMode()
     {
         debugModeOn = !debugModeOn;
+        if(debugModeOn)
+        {
+            debugText.text = "Debug Mode: On";
+        }
+        else
+        {
+            debugText.text = "Debug Mode: Off";
+        }
     }
     
     void WinState()
