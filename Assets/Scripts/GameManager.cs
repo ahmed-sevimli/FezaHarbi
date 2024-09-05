@@ -17,8 +17,8 @@ public class GameManager : MonoBehaviour
     private Dropdown levelsDropdown;
     private int selectedLevel;
     private int lastUnlockedLevel=0;
-    private Box box;
-    private Character _char;
+    //private Box[] boxes;
+    //private Character[] characters;
 
     void Awake()
     {
@@ -53,17 +53,15 @@ public class GameManager : MonoBehaviour
 
     public void SubscribeBoxAction(Box box)
     {
-        this.box = box;
         box.OnBoxDestroy += CheckState;
     }
     
     public void SubscribeCharacterEvent(Character _char)
     {
-        this._char = _char;
         _char.CharDestruction += CheckState;
     }
 
-    void CheckState(string name, string type)
+    void CheckState(string name, string type, GameObject destroyedObject)
     {
         //Check for win and loss
         Debug.Log(name + " has been destroyed");
@@ -74,7 +72,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Checkstate " + type);
         if(type == "Box")
         {
-            box.OnBoxDestroy -= CheckState;
+            destroyedObject.GetComponent<Box>().OnBoxDestroy -= CheckState;
         }
         else if(type == "Character")
         {
@@ -83,7 +81,7 @@ public class GameManager : MonoBehaviour
             {
                 playerIsDead = true;
             }
-            _char.CharDestruction -= CheckState;
+            destroyedObject.GetComponent<Character>().CharDestruction -= CheckState;
         }
     }
 

@@ -11,7 +11,7 @@ public class Box : MonoBehaviour, Destructible
     private Material lowHealth;
     //public delegate void BoxDestroyer();
     //public static event BoxDestroyer BoxDestruction;
-    public Action<string, string> OnBoxDestroy;
+    public Action<string, string, GameObject> OnBoxDestroy;
     void Awake()
     {
         // boxBody = GetComponent<Rigidbody>();
@@ -41,6 +41,7 @@ public class Box : MonoBehaviour, Destructible
         || String.Equals(SceneManager.GetActiveScene().name,"Level2"))
         {
             GameManager.Instance.SubscribeBoxAction(this);
+            Debug.Log("A Box has Subscribed!");
         }
     }
 
@@ -72,7 +73,7 @@ public class Box : MonoBehaviour, Destructible
     {
         if(OnBoxDestroy != null)
         {
-            OnBoxDestroy(gameObject.name, "Box");
+            OnBoxDestroy(gameObject.name, "Box", gameObject);
         }
         Destroy(gameObject);
     }
