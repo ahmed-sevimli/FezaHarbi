@@ -478,6 +478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67b71c6057b78a14d89a78ba8530436c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debugText: {fileID: 293689880}
   levelsDropdown: {fileID: 0}
 --- !u!4 &899843348
 Transform:
@@ -738,6 +739,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2e6fd269ea697e43b9767f2cee13a94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activeLevel: 
+  nextLevel: 
 --- !u!4 &1435583174
 Transform:
   m_ObjectHideFlags: 0
