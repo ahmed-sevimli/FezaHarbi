@@ -9,26 +9,6 @@ public class Box : MonoBehaviour, Destructible
     private int health = 3;
     private Material midHealth;
     private Material lowHealth;
-    //public delegate void BoxDestroyer();
-    //public static event BoxDestroyer BoxDestruction;
-    public Action<string, string, GameObject> OnBoxDestroy;
-    void Awake()
-    {
-        // boxBody = GetComponent<Rigidbody>();
-        // midHealth = Resources.Load("ball_mat1", typeof(Material)) as Material;
-        // lowHealth = Resources.Load("ball_mat3", typeof(Material)) as Material;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        // boxBody.AddRelativeForce(new Vector3(1260f, 680f, 340f));
-        // if(String.Equals(SceneManager.GetActiveScene().name,"Level1")
-        // || String.Equals(SceneManager.GetActiveScene().name,"Level2"))
-        // {
-        //     GameManager.Instance.SubscribeBoxAction(this);
-        // }
-    }
 
     public void Init()
     {
@@ -36,19 +16,6 @@ public class Box : MonoBehaviour, Destructible
         midHealth = Resources.Load("ball_mat1", typeof(Material)) as Material;
         lowHealth = Resources.Load("ball_mat3", typeof(Material)) as Material;
         boxBody.AddRelativeForce(new Vector3(1260f, 680f, 340f));
-
-        if(String.Equals(SceneManager.GetActiveScene().name,"Level1")
-        || String.Equals(SceneManager.GetActiveScene().name,"Level2"))
-        {
-            GameManager.Instance.SubscribeBoxAction(this);
-            Debug.Log("A Box has Subscribed!");
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void TakeHit()
@@ -71,10 +38,6 @@ public class Box : MonoBehaviour, Destructible
 
     public void SelfDestruct()
     {
-        if(OnBoxDestroy != null)
-        {
-            OnBoxDestroy(gameObject.name, "Box", gameObject);
-        }
         Destroy(gameObject);
     }
 }

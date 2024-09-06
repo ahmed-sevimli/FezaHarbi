@@ -35,6 +35,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        //Subscribe
+        Character.CharDestruction += CheckState;
+    }
+
+
     void Update()
     {
         if(debugModeOn)
@@ -52,37 +59,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void SubscribeBoxAction(Box box)
-    {
-        box.OnBoxDestroy += CheckState;
-    }
-    
-    public void SubscribeCharacterEvent(Character _char)
-    {
-        _char.CharDestruction += CheckState;
-    }
-
-    void CheckState(string name, string type, GameObject destroyedObject)
+    void CheckState(string name)
     {
         //Check for win and loss
         Debug.Log(name + " has been destroyed");
         Invoke("WinState",1f);
         Invoke("LoseState",1f);
 
-        //Unsubscribe
-        Debug.Log("Checkstate " + type);
-        if(type == "Box")
+        //Check if the player is dead
+        if(name == "Player")
         {
-            destroyedObject.GetComponent<Box>().OnBoxDestroy -= CheckState;
-        }
-        else if(type == "Character")
-        {
-            //Check if the player is dead
-            if(name == "Player")
-            {
-                playerIsDead = true;
-            }
-            destroyedObject.GetComponent<Character>().CharDestruction -= CheckState;
+            playerIsDead = true;
         }
     }
 
@@ -136,7 +123,7 @@ public class GameManager : MonoBehaviour
 
     public void ChangeDebugMode()
     {
-        debugModeOn = !debugModeOn;
+        debugModeOn =! debugModeOn;
         if(debugModeOn)
         {
             debugText.text = "Debug Mode: On";
@@ -172,8 +159,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void SpawnEnemy()
+    void OnDisable()
     {
-        return;
+        //Unsubscribe
+        Character.CharDestruction -= CheckState;
     }
 }

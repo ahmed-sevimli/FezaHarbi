@@ -5,8 +5,8 @@ using UnityEngine;
 public class Character : MonoBehaviour, Shooter, Destructible
 {
     
-    public delegate void CharDestroyer(string name, string type, GameObject character);
-    public event CharDestroyer CharDestruction;
+    public delegate void CharDestroyer(string name);
+    public static event CharDestroyer CharDestruction;
     public Rigidbody ownerBody; // Reference to player's Rigidbody.
     protected int health;
     protected float fire_period;
@@ -88,7 +88,7 @@ public class Character : MonoBehaviour, Shooter, Destructible
     {
         if(CharDestruction != null)
         {
-            CharDestruction(gameObject.name, "Character", gameObject);
+            CharDestruction(gameObject.name);
         }
         Destroy(gameObject);
     }
