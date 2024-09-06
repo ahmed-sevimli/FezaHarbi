@@ -9,8 +9,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public Text debugText;
-    private int killCount;
-    private int currTargetCount;
+    public int killCount;
+    public int currTargetCount;
     private bool debugModeOn = false;
     private bool playerIsDead = false;
 
@@ -26,11 +26,11 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
         //Singleton mimarisi
         if (Instance != null && Instance != this)
-        { 
+        {
             Destroy(this);
         }
         else 
-        { 
+        {
             Instance = this; 
         }
     }
@@ -61,24 +61,33 @@ public class GameManager : MonoBehaviour
 
     void CheckState(string name)
     {
-        //Check for win and loss
+        //raise kill count
+        killCount++;
         Debug.Log(name + " has been destroyed");
-        Invoke("WinState",1f);
-        Invoke("LoseState",1f);
-
         //Check if the player is dead
         if(name == "Player")
         {
-            playerIsDead = true;
+            LoseLevel();
+        }
+        else
+        {
+            //Check for win
+            WinState();
         }
     }
 
     public void LoadLevel(string levelToLoad)
     {
         SceneManager.LoadScene(levelToLoad);
-        //reset counts
+        Invoke("GetCurrTargetCount",0.2f);
+    }
+
+    public void GetCurrTargetCount()
+    {
+        //reset killCount and get new targetCount
         killCount = 0;
         currTargetCount = LevelController.Instance.GetTargetCount();
+        Debug.Log("curr target count is " + currTargetCount);
     }
 
     public void StartGame()
@@ -95,6 +104,8 @@ public class GameManager : MonoBehaviour
 
     void LoseLevel()
     {
+        Debug.Log("You Lost!!!");
+        //Debug.Log(LevelController.GetActiveLevel() + " is ActiveScene");
         LoadLevel("GameOver");
     }
 
@@ -145,17 +156,6 @@ public class GameManager : MonoBehaviour
         else
         {
             Debug.Log("Not a win yet");
-        }
-    }
-
-    void LoseState()
-    {
-        if(playerIsDead)
-        {
-            Debug.Log("You Lost!!!");
-            //Debug.Log(LevelController.GetActiveLevel() + " is ActiveScene");
-		    LoseLevel();
-            playerIsDead = false;
         }
     }
 
