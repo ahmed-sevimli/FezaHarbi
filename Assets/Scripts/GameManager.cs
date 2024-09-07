@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
     {
         if(debugModeOn)
         {
+            //Level Control
             if(Input.GetKeyDown(KeyCode.Alpha1))
             {
                 Debug.Log("You Won!!!");
@@ -55,6 +56,12 @@ public class GameManager : MonoBehaviour
             {
                 Debug.Log("You Lost!!!");
                 LoseLevel();
+            }
+
+            //Enemy Control
+            if (Input.GetKeyUp(KeyCode.Alpha3))
+            {
+                Enemy.enemyCanShoot = !Enemy.enemyCanShoot;
             }
         }
     }

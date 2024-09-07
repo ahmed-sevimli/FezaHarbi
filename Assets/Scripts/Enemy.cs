@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Enemy : Character
 {
-    public bool enemyCanShoot = true;
+    public static bool enemyCanShoot = true;
     private bool enemyCanTurn = false;
     void Awake()
     {
@@ -58,11 +58,6 @@ public class Enemy : Character
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.X))
-        {
-            enemyCanShoot = !enemyCanShoot;
-        }
-
         base.Update();
         if(enemyCanShoot){
 		    Shoot(GetComponent<EnemyMovementController>());
