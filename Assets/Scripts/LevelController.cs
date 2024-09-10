@@ -29,14 +29,14 @@ public class LevelController : MonoBehaviour
 
     public string GetActiveLevel()
     {
-        Debug.Log("Someone is getting " + activeLevel);
+        //Debug.Log("Someone is getting " + activeLevel);
         return activeLevel;
     }
 
     public void SetActiveLevel()
     {
         activeLevel = SceneManager.GetActiveScene().name;
-        Debug.Log("Active Level is " + activeLevel);
+        //Debug.Log("Active Level is " + activeLevel);
     }
 
     public string GetNextLevel()

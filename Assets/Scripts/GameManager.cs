@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -11,8 +8,10 @@ public class GameManager : MonoBehaviour
     public Text debugText;
     public int killCount;
     public int currTargetCount;
-    private bool debugModeOn = false;
+    private bool debugModeOn = true;
     private bool playerIsDead = false;
+    public bool lastLevelWon = false;
+    public bool lastLevelLost = false;
 
     [SerializeField]
     private Dropdown levelsDropdown;
@@ -23,15 +22,15 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
         //Singleton mimarisi
         if (Instance != null && Instance != this)
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
         else 
         {
-            Instance = this; 
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
     }
 
@@ -48,12 +47,10 @@ public class GameManager : MonoBehaviour
         {
             if(Input.GetKeyDown(KeyCode.Alpha1))
             {
-                Debug.Log("You Won!!!");
                 NextLevel();
             }
             else if(Input.GetKeyDown(KeyCode.Alpha2))
             {
-                Debug.Log("You Lost!!!");
                 LoseLevel();
             }
         }
@@ -79,13 +76,15 @@ public class GameManager : MonoBehaviour
     public void LoadLevel(string levelToLoad)
     {
         SceneManager.LoadScene(levelToLoad);
+        //reset current kills and get new targetCount
+        killCount = 0;
         Invoke("GetCurrTargetCount",0.2f);
     }
 
+    
+
     public void GetCurrTargetCount()
     {
-        //reset killCount and get new targetCount
-        killCount = 0;
         currTargetCount = LevelController.Instance.GetTargetCount();
         Debug.Log("curr target count is " + currTargetCount);
     }
@@ -96,21 +95,21 @@ public class GameManager : MonoBehaviour
 		LoadLevel("Level1");
     }
 
-    void RestartGame()
-    {
-		//Debug.Log(LevelController.GetActiveLevel() + " is ActiveScene");
-		LoadLevel("Level3");
-    }
-
     void LoseLevel()
     {
+        lastLevelLost = true;
+        lastLevelWon = false;
+        PlayerPrefs.SetString("lastLevelLost", "true");
         Debug.Log("You Lost!!!");
+        Debug.Log("Here is the lastevelLost state: " + lastLevelLost);
         //Debug.Log(LevelController.GetActiveLevel() + " is ActiveScene");
-        LoadLevel("GameOver");
+        LoadLevel("MainMenu");
     }
 
     void NextLevel()
     {
+        Debug.Log("You Won!!!");
+        lastLevelWon = true;
         LoadLevel(LevelController.Instance.GetNextLevel());
     }
 
@@ -150,12 +149,11 @@ public class GameManager : MonoBehaviour
         Debug.Log("WinState Check");
         if(killCount >= currTargetCount)
         {
-            Debug.Log("You Won!!!");
-            LoadLevel(LevelController.Instance.GetNextLevel());
+            NextLevel();
         }
         else
         {
-            Debug.Log("Not a win yet");
+            //Debug.Log("Not a win yet");
         }
     }
 

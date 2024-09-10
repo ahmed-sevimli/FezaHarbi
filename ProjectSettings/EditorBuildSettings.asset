@@ -9,10 +9,10 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 02f05c49ebc92e54cac643dde1a947c8
   - enabled: 1
-    path: Assets/Scenes/GameOver.unity
+    path: Assets/Scenes/atlose.unity
     guid: fdc4642d15ee8cf4f8b1ce9853afdc03
   - enabled: 1
-    path: Assets/Scenes/GameWon.unity
+    path: Assets/Scenes/atwin.unity
     guid: e9afed528349ca748845992aff1770fc
   - enabled: 1
     path: Assets/Scenes/Level1.unity
