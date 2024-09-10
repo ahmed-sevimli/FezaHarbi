@@ -58,12 +58,12 @@ public class UIController : MonoBehaviour
         }
         else if(GameManager.Instance.lastLevelLost)
         {
-            Debug.Log("Bura mi calisti");
             SetFirstCanvasActive(LoseCanvas, WinCanvas, MainCanvas);
         }
         else
         {
             SetFirstCanvasActive(MainCanvas, WinCanvas, LoseCanvas);
+            GetDebugText();
         }
     }
 
@@ -78,6 +78,11 @@ public class UIController : MonoBehaviour
     public void ChangeDebugMode()
     {
         GameManager.Instance.debugModeOn =! GameManager.Instance.debugModeOn;
+        GetDebugText();
+    }
+
+    void GetDebugText()
+    {
         if(GameManager.Instance.debugModeOn)
         {
             debugText.text = "Debug Mode: On";
