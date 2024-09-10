@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
     {
         if(debugModeOn)
         {
+            //Level Control
             if(Input.GetKeyDown(KeyCode.Alpha1))
             {
                 NextLevel();
@@ -52,6 +53,12 @@ public class GameManager : MonoBehaviour
             else if(Input.GetKeyDown(KeyCode.Alpha2))
             {
                 LoseLevel();
+            }
+
+            //Enemy Control
+            if (Input.GetKeyUp(KeyCode.Alpha3))
+            {
+                Enemy.enemyCanShoot = !Enemy.enemyCanShoot;
             }
         }
     }

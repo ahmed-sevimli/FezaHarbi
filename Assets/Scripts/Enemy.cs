@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Enemy : Character
 {
-    public bool enemyCanShoot = true;
+    public static bool enemyCanShoot = true;
     private bool enemyCanTurn = false;
     void Awake()
     {
@@ -41,16 +41,17 @@ public class Enemy : Character
         characterShot = GameObject.Find("EnemyShot");
         midHealth = Resources.Load("ball_mat1", typeof(Material)) as Material;
         lowHealth = Resources.Load("ball_mat3", typeof(Material)) as Material;
-
-        //Enemy turn control
-        if(String.Equals(LevelController.Instance.GetActiveLevel(),"Level5")
+        
+        //Enemy Level Control
+        if(String.Equals(LevelController.Instance.GetActiveLevel(),"Level1")
+        || String.Equals(LevelController.Instance.GetActiveLevel(),"Level2"))
+        {
+            enemyCanShoot = false;
+        }
+        else if(String.Equals(LevelController.Instance.GetActiveLevel(),"Level5")
         || String.Equals(LevelController.Instance.GetActiveLevel(),"Level6"))
         {
             enemyCanTurn = true;
-        }
-       // GameManager.Instance.SubscribeCharacterEvent(this);
-        if(String.Equals(LevelController.Instance.GetActiveLevel(),"Level5") || String.Equals(LevelController.Instance.GetActiveLevel(),"Level6"))
-        {
             fire_period = fire_period * 2;
         }
     }
@@ -58,11 +59,6 @@ public class Enemy : Character
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.X))
-        {
-            enemyCanShoot = !enemyCanShoot;
-        }
-
         base.Update();
         if(enemyCanShoot){
 		    Shoot(GetComponent<EnemyMovementController>());
