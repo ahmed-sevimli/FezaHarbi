@@ -5,20 +5,12 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public Text debugText;
     public int killCount;
     public int currTargetCount;
-    private bool debugModeOn = true;
+    public bool debugModeOn = true;
     private bool playerIsDead = false;
     public bool lastLevelWon = false;
     public bool lastLevelLost = false;
-
-    [SerializeField]
-    private Dropdown levelsDropdown;
-    private int selectedLevel;
-    private int lastUnlockedLevel=0;
-    //private Box[] boxes;
-    //private Character[] characters;
 
     void Awake()
     {
@@ -88,18 +80,10 @@ public class GameManager : MonoBehaviour
         Invoke("GetCurrTargetCount",0.2f);
     }
 
-    
-
     public void GetCurrTargetCount()
     {
         currTargetCount = LevelController.Instance.GetTargetCount();
         Debug.Log("curr target count is " + currTargetCount);
-    }
-
-    public void StartGame()
-    {
-		//Debug.Log(LevelController.GetActiveLevel() + " is ActiveScene");
-		LoadLevel("Level1");
     }
 
     void LoseLevel()
@@ -118,37 +102,6 @@ public class GameManager : MonoBehaviour
         Debug.Log("You Won!!!");
         lastLevelWon = true;
         LoadLevel(LevelController.Instance.GetNextLevel());
-    }
-
-    void SelectLevel()
-    {
-        //Code for dropdown
-        //requestedLevel = dropdown.choice;
-        
-        //unlock all levels
-        if(debugModeOn)
-        {
-            lastUnlockedLevel = 8;
-        }
-
-        //try and load selected level
-        if(selectedLevel <= lastUnlockedLevel)
-        {
-            LoadLevel("Level" + selectedLevel);
-        }
-    }
-
-    public void ChangeDebugMode()
-    {
-        debugModeOn =! debugModeOn;
-        if(debugModeOn)
-        {
-            debugText.text = "Debug Mode: On";
-        }
-        else
-        {
-            debugText.text = "Debug Mode: Off";
-        }
     }
     
     void WinState()

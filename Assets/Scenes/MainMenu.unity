@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &118665959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -454,7 +454,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &405428029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -892,12 +892,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67b71c6057b78a14d89a78ba8530436c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugText: {fileID: 293689880}
   killCount: 0
   currTargetCount: 0
+  debugModeOn: 1
   lastLevelWon: 0
   lastLevelLost: 0
-  levelsDropdown: {fileID: 0}
 --- !u!4 &899843348
 Transform:
   m_ObjectHideFlags: 0
@@ -944,6 +943,8 @@ MonoBehaviour:
   MainCanvas: {fileID: 405428028}
   WinCanvas: {fileID: 414523758}
   LoseCanvas: {fileID: 118665958}
+  debugText: {fileID: 293689880}
+  levelsDropdown: {fileID: 0}
 --- !u!4 &928943721
 Transform:
   m_ObjectHideFlags: 0
@@ -1361,8 +1362,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 899843347}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 928943720}
+        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
         m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
@@ -1540,8 +1541,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 899843347}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+      - m_Target: {fileID: 928943720}
+        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
         m_MethodName: ChangeDebugMode
         m_Mode: 1
         m_Arguments:
