@@ -38,29 +38,29 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if(debugModeOn)
+        if(SceneManager.GetActiveScene().name != "MainMenu")
         {
-            //Level Control
-            if(Input.GetKeyDown(KeyCode.Alpha1))
+            if(debugModeOn)
             {
-                NextLevel();
-            }
-            else if(Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                LoseLevel();
+                //Level Control
+                if(Input.GetKeyDown(KeyCode.Alpha1))
+                {
+                    NextLevel();
+                }
+                else if(Input.GetKeyDown(KeyCode.Alpha2))
+                {
+                    LoseLevel();
+                }
+
+                //Enemy Control
+                if (Input.GetKeyUp(KeyCode.Alpha3))
+                {
+                    Enemy.enemyCanShoot = !Enemy.enemyCanShoot;
+                }
             }
 
-            //Enemy Control
-            if (Input.GetKeyUp(KeyCode.Alpha3))
-            {
-                Enemy.enemyCanShoot = !Enemy.enemyCanShoot;
-            }
-        }
-
-        //Pause Control
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            if(SceneManager.GetActiveScene().name != "MainMenu")
+            //Pause Control
+            if(Input.GetKeyDown(KeyCode.Escape))
             {
                 PauseOrResumeGame();
             }
