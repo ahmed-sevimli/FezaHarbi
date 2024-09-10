@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    public GameObject PauseMenu;
     public int killCount;
     public int currTargetCount;
     public bool debugModeOn = true;
@@ -24,6 +25,9 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+
+        //Close Pause Menu
+        PauseMenu.SetActive(false);
     }
 
     void Start()
@@ -31,7 +35,6 @@ public class GameManager : MonoBehaviour
         //Subscribe
         Character.CharDestruction += CheckState;
     }
-
 
     void Update()
     {
@@ -51,6 +54,15 @@ public class GameManager : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.Alpha3))
             {
                 Enemy.enemyCanShoot = !Enemy.enemyCanShoot;
+            }
+        }
+
+        //Pause Control
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(SceneManager.GetActiveScene().name != "MainMenu")
+            {
+                PauseOrResumeGame();
             }
         }
     }
@@ -103,6 +115,15 @@ public class GameManager : MonoBehaviour
         lastLevelWon = true;
         LoadLevel(LevelController.Instance.GetNextLevel());
     }
+
+    public void GoToMainMenu()
+    {
+        //Close Pause Screen and Return
+        lastLevelWon = false;
+        lastLevelLost = false;
+        PauseOrResumeGame();
+        LoadLevel("MainMenu");
+    }
     
     void WinState()
     {
@@ -121,5 +142,11 @@ public class GameManager : MonoBehaviour
     {
         //Unsubscribe
         Character.CharDestruction -= CheckState;
+    }
+
+    public void PauseOrResumeGame()
+    {
+        Time.timeScale = 1 - Time.timeScale;
+        PauseMenu.SetActive(!PauseMenu.activeInHierarchy);
     }
 }
