@@ -51,9 +51,11 @@ public class Shot : MonoBehaviour, Projectile
         //Checks if the collided object is the owner of the shot
         if(!col.gameObject.CompareTag(owner_tag))
         {
-            if(!col.gameObject.CompareTag("Wall"))
+            if(!col.gameObject.CompareTag("Wall") && !col.gameObject.CompareTag("Shots"))
             {
-
+                //Hitting another char case
+                //Might cause problems in the future bec:
+                //Enemies might hit each other
                 HitObject(col.gameObject);
                 Destroy(gameObject);
             }
@@ -68,7 +70,6 @@ public class Shot : MonoBehaviour, Projectile
         if(collidedObj.GetComponent<Destructible>() != null)
         {
             collidedObj.GetComponent<Destructible>().TakeHit();
-
         }
     }
 }
