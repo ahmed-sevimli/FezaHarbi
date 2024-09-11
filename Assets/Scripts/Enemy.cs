@@ -10,11 +10,13 @@ public class Enemy : Character
     private bool enemyCanTurn = false;
     void Awake()
     {
+        
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        base.Start();
     }
 
     public void Init()

@@ -16,6 +16,9 @@ public class Character : MonoBehaviour, Shooter, Destructible
     protected GameObject characterShot;
     protected Material midHealth;
     protected Material lowHealth;
+    protected Renderer parentRend;
+    protected Renderer childRend1;
+    protected Renderer childRend2;
     // Start is called before the first frame update
 
     void Awake()
@@ -23,6 +26,13 @@ public class Character : MonoBehaviour, Shooter, Destructible
         ownerBody = GetComponent<Rigidbody>();
     }
 
+    public void Start()
+    {
+        //Get Renderers
+        parentRend = gameObject.GetComponent<Renderer>();
+        childRend1 = gameObject.transform.GetChild(1).GetComponent<Renderer>();
+        childRend2 = gameObject.transform.GetChild(2).GetComponent<Renderer>();
+    }
 
     // Update is called once per frame
     protected void Update()
@@ -69,19 +79,24 @@ public class Character : MonoBehaviour, Shooter, Destructible
     
         health--;
         Debug.Log("A Char has Taken a Hit!");
-        /*
         if(health == 2)
         {
-            gameObject.GetComponent<Renderer>().material = midHealth;
+            parentRend.material = midHealth;
+            childRend1.material = midHealth;
+            childRend2.material = midHealth;
         }
         else if(health == 1)
         {
-            gameObject.GetComponent<Renderer>().material = lowHealth;
+            parentRend.material = lowHealth;
+            childRend1.material = lowHealth;
+            childRend2.material = lowHealth;
         }
-        else*/ if(health <= 0)
+        else if(health <= 0)
         {
             SelfDestruct();
         }
+
+
     }
 
     public void SelfDestruct()

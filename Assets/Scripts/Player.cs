@@ -18,6 +18,7 @@ public class Player : Character
     void Start()
     {
         Spawn();
+        base.Start();
     }
 
     // Update is called once per frame

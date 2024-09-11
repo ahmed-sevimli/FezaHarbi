@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6685303476969477698}
   m_Layer: 0
   m_Name: PlayerShot
-  m_TagString: Untagged
+  m_TagString: Shots
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,7 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotBody: {fileID: 0}
   fired: 0
-  owner: {fileID: 0}
+  owner_tag: 
 --- !u!54 &6685303476969477698
 Rigidbody:
   m_ObjectHideFlags: 0
