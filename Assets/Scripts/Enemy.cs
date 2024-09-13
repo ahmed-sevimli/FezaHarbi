@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Enemy : Character
 {
+    public GameObject enemyShotPrefab;
     public static bool enemyCanShoot = true;
     private bool enemyCanTurn = false;
     void Awake()
@@ -24,7 +25,7 @@ public class Enemy : Character
         //Awake
         fire_period = 0.75f;
         health = 2;
-        characterShot = GameObject.Find("EnemyShot");
+        characterShot = enemyShotPrefab;
         midHealth = Resources.Load("ball_mat1", typeof(Material)) as Material;
         lowHealth = Resources.Load("ball_mat3", typeof(Material)) as Material;
         

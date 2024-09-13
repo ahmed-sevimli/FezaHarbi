@@ -16,8 +16,7 @@ public class Shot : MonoBehaviour, Projectile
 
     // Start is called before the first frame update
     protected void Start()
-    {
-        shotBody = GetComponent<Rigidbody>(); // Access shot's Rigidbody.        
+    {   
     }
 
     // Update is called once per frame
@@ -33,7 +32,10 @@ public class Shot : MonoBehaviour, Projectile
 
     public void GetFired()
     {
-        shotBody.velocity = transform.forward * speed_force;
+        if(shotBody != null)
+        {
+            shotBody.velocity = transform.forward * speed_force;
+        }
     }
 
     protected void OnTriggerStay(Collider col)
