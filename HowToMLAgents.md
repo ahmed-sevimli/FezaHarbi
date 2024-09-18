@@ -8,9 +8,11 @@ In order to get the best out of this guidance, the following links will prove us
 * [Training Guide](https://github.com/gzrjzcx/ML-agents/blob/master/docs/Training-ML-Agents.md)
 * [Overview Page](https://github.com/Unity-Technologies/ml-agents/blob/develop/docs/ML-Agents-Overview.md)
 * [Configuration Guide](https://unity-technologies.github.io/ml-agents/Training-Configuration-File/)
+
 \*The Installation Guide is for develop branch of ml-agents, so users should be aware that it might not be stable.
 If you are looking for a stable version checkout [Windows Installation Guide](https://github.com/Unity-Technologies/ml-agents/blob/develop/docs/Installation-Anaconda-Windows.md).
 Also note that the guide referred is deprecated.
+
 
 ## Installation
 1. Install Unity (2023.2 or later)
@@ -32,6 +34,7 @@ pip install -e ./ml-agents-envs
 pip install -e ./ml-agents
 ```
 
+
 ## Training
 1. Go to your local repo directory
 2. Run the command below:
@@ -40,6 +43,7 @@ mlagents-learn --run-id=<name-for-this-training-run>
 ```
 - This will allow you to start training using default configuration so that you can teach your agent Reinforcement Learning.
 - The resulting brain/model will be saved as an `.onnx` file in a directory called `results`
+
 
 
 ## Configuration
