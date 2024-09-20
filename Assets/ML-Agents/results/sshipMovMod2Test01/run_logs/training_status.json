@@ -1,0 +1,57 @@
+{
+    "ShipMovementImitation": {
+        "checkpoints": [
+            {
+                "steps": 49959,
+                "file_path": "results\\sshipMovMod2Test01\\ShipMovementImitation\\ShipMovementImitation-49959.onnx",
+                "reward": -1.0,
+                "creation_time": 1726572049.0647542,
+                "auxillary_file_paths": [
+                    "results\\sshipMovMod2Test01\\ShipMovementImitation\\ShipMovementImitation-49959.pt"
+                ]
+            },
+            {
+                "steps": 99983,
+                "file_path": "results\\sshipMovMod2Test01\\ShipMovementImitation\\ShipMovementImitation-99983.onnx",
+                "reward": -0.8097826086956522,
+                "creation_time": 1726572103.7012074,
+                "auxillary_file_paths": [
+                    "results\\sshipMovMod2Test01\\ShipMovementImitation\\ShipMovementImitation-99983.pt"
+                ]
+            },
+            {
+                "steps": 149982,
+                "file_path": "results\\sshipMovMod2Test01\\ShipMovementImitation\\ShipMovementImitation-149982.onnx",
+                "reward": -0.8421052631578947,
+                "creation_time": 1726572159.4179828,
+                "auxillary_file_paths": [
+                    "results\\sshipMovMod2Test01\\ShipMovementImitation\\ShipMovementImitation-149982.pt"
+                ]
+            },
+            {
+                "steps": 186553,
+                "file_path": "results\\sshipMovMod2Test01\\ShipMovementImitation\\ShipMovementImitation-186553.onnx",
+                "reward": -0.704225352112676,
+                "creation_time": 1726572263.0498524,
+                "auxillary_file_paths": [
+                    "results\\sshipMovMod2Test01\\ShipMovementImitation\\ShipMovementImitation-186553.pt"
+                ]
+            }
+        ],
+        "elo": -281.8811202767725,
+        "final_checkpoint": {
+            "steps": 186553,
+            "file_path": "results\\sshipMovMod2Test01\\ShipMovementImitation.onnx",
+            "reward": -0.704225352112676,
+            "creation_time": 1726572263.0498524,
+            "auxillary_file_paths": [
+                "results\\sshipMovMod2Test01\\ShipMovementImitation\\ShipMovementImitation-186553.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0.dev0",
+        "torch_version": "2.2.2+cu121"
+    }
+}

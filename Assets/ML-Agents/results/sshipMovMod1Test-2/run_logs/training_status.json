@@ -1,0 +1,38 @@
+{
+    "My Behavior": {
+        "checkpoints": [
+            {
+                "steps": 499976,
+                "file_path": "results\\sshipMovMod1Test-2\\My Behavior\\My Behavior-499976.onnx",
+                "reward": -0.15073529411764705,
+                "creation_time": 1726557953.1210775,
+                "auxillary_file_paths": [
+                    "results\\sshipMovMod1Test-2\\My Behavior\\My Behavior-499976.pt"
+                ]
+            },
+            {
+                "steps": 500001,
+                "file_path": "results\\sshipMovMod1Test-2\\My Behavior\\My Behavior-500001.onnx",
+                "reward": -0.16304347826086957,
+                "creation_time": 1726557953.1655912,
+                "auxillary_file_paths": [
+                    "results\\sshipMovMod1Test-2\\My Behavior\\My Behavior-500001.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 500001,
+            "file_path": "results\\sshipMovMod1Test-2\\My Behavior.onnx",
+            "reward": -0.16304347826086957,
+            "creation_time": 1726557953.1655912,
+            "auxillary_file_paths": [
+                "results\\sshipMovMod1Test-2\\My Behavior\\My Behavior-500001.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0.dev0",
+        "torch_version": "2.2.2+cu121"
+    }
+}
