@@ -482,7 +482,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 1
+    VectorObservationSize: 10
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 1
@@ -493,8 +493,8 @@ MonoBehaviour:
     hasUpgradedBrainParametersWithActionSpec: 1
   m_Model: {fileID: 0}
   m_InferenceDevice: 0
-  m_BehaviorType: 1
-  m_BehaviorName: My Behavior
+  m_BehaviorType: 0
+  m_BehaviorName: ShipMovementImitation
   TeamId: 0
   m_UseChildSensors: 1
   m_UseChildActuators: 1
@@ -516,10 +516,11 @@ MonoBehaviour:
   hasUpgradedFromAgentParameters: 1
   MaxStep: 100000
   targetTransform: {fileID: 0}
+  centerTransform: {fileID: 0}
   winMaterial: {fileID: 0}
   loseMaterial: {fileID: 0}
   floorMesh: {fileID: 0}
-  hitLimit: 1
+  hitLimit: 2
 --- !u!114 &8897921180099485938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -546,7 +547,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2902496c0120472b90269f94a0aec7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Record: 1
+  Record: 0
   NumStepsToRecord: 0
-  DemonstrationName: SShip Mov Demo
-  DemonstrationDirectory: demos
+  DemonstrationName: SShipMovDemo
+  DemonstrationDirectory: Assets/demos
