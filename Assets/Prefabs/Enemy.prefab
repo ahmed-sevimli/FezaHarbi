@@ -480,7 +480,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ownerBody: {fileID: 3763220732810917565}
-  shotSoundClip: {fileID: 0}
+  shotSoundClip: {fileID: 8300000, guid: e942e89d07aeddc4b9d0bccc6e20f180, type: 3}
   enemyShotPrefab: {fileID: 1606639411806969734, guid: 1c180e8988672ca4e80d5dcb809347a6, type: 3}
 --- !u!114 &3763220732810917563
 MonoBehaviour:

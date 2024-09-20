@@ -8,6 +8,7 @@ public class Character : MonoBehaviour, Shooter, Destructible
     public delegate void CharDestroyer(string name);
     public static event CharDestroyer CharDestruction;
     public Rigidbody ownerBody; // Reference to player's Rigidbody.
+    [SerializeField] private AudioClip shotSoundClip;
     protected int health;
     protected float fire_period;
     protected float eTimeAfterShoot = 0f;
@@ -23,7 +24,7 @@ public class Character : MonoBehaviour, Shooter, Destructible
 
     void Awake()
     {
-        ownerBody = GetComponent<Rigidbody>();
+        //ownerBody = GetComponent<Rigidbody>();
     }
 
     public void Start()
@@ -69,6 +70,9 @@ public class Character : MonoBehaviour, Shooter, Destructible
             _characterShot.GetComponent<Shot>().GetFired();
             eTimeAfterShoot = 0f;
             can_fire = false;
+
+            //Play Shot Sound
+            SoundController.Instance.PlaySoundFX(shotSoundClip, transform, 0.3f);
 
             //Recoil
             charController.Recoil();
