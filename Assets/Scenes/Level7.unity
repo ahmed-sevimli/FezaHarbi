@@ -2421,7 +2421,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeLevel: 
-  nextLevel: MainMenu
+  nextLevel: Level8
   targetCount: 12
 --- !u!4 &367990655
 Transform:

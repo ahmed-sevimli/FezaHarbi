@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -72,7 +73,14 @@ public class Character : MonoBehaviour, Shooter, Destructible
             can_fire = false;
 
             //Play Shot Sound
-            SoundController.Instance.PlaySoundFX(shotSoundClip, transform, 0.3f);
+            try
+            {
+                SoundController.Instance.PlaySoundFX(shotSoundClip, transform, 0.3f);
+            }
+            catch(NullReferenceException e)
+            {
+                Debug.Log("Brother, no sound device.");
+            }
 
             //Recoil
             charController.Recoil();

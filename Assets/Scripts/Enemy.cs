@@ -8,7 +8,7 @@ public class Enemy : Character
 {
     public GameObject enemyShotPrefab;
     public static bool enemyCanShoot = true;
-    private bool enemyCanTurn = false;
+    internal bool enemyCanTurn = false;
     void Awake()
     {
         
