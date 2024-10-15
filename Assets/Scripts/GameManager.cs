@@ -5,9 +5,11 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    public AudioSource source;
     public GameObject PauseMenu;
     public int killCount;
     public int currTargetCount;
+    public bool unPaused = true;
     public bool debugModeOn = true;
     private bool playerIsDead = false;
     public bool lastLevelWon = false;
@@ -40,7 +42,7 @@ public class GameManager : MonoBehaviour
     {
         if(SceneManager.GetActiveScene().name != "MainMenu")
         {
-            if(debugModeOn)
+            if(debugModeOn && unPaused)
             {
                 //Level Control
                 if(Input.GetKeyDown(KeyCode.Alpha1))
@@ -90,12 +92,20 @@ public class GameManager : MonoBehaviour
         //reset current kills and get new targetCount
         killCount = 0;
         Invoke("GetCurrTargetCount",0.2f);
+        Invoke("PlayLevelMusic", 0.15f);
+
     }
 
     public void GetCurrTargetCount()
     {
         currTargetCount = LevelController.Instance.GetTargetCount();
         Debug.Log("curr target count is " + currTargetCount);
+    }
+
+    public void PlayLevelMusic()
+    {
+        source.clip = LevelController.Instance.GetLevelMusic();
+        source.Play();
     }
 
     void LoseLevel()
@@ -148,5 +158,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1 - Time.timeScale;
         PauseMenu.SetActive(!PauseMenu.activeInHierarchy);
+        source.mute = source.mute!;
+        unPaused = !unPaused;
     }
 }

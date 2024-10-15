@@ -11,6 +11,7 @@ public class LevelController : MonoBehaviour
     public string activeLevel;
     public string nextLevel;
     public int targetCount;
+    public AudioClip levelMusic;
 
     void Awake()
     {
@@ -48,5 +49,10 @@ public class LevelController : MonoBehaviour
     public int GetTargetCount()
     {
         return targetCount;
+    }
+
+    public AudioClip GetLevelMusic()
+    {
+        return levelMusic;
     }
 }
