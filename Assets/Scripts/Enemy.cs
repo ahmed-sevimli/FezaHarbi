@@ -24,6 +24,7 @@ public class Enemy : Character
     {
         //Awake
         fire_period = 0.75f;
+        eTimeAfterShoot = UnityEngine.Random.Range(0f, 0.75f);
         health = 2;
         characterShot = enemyShotPrefab;
         midHealth = Resources.Load("ball_mat1", typeof(Material)) as Material;
