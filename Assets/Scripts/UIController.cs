@@ -39,6 +39,12 @@ public class UIController : MonoBehaviour
 		GameManager.Instance.LoadLevel("Level3");
     }
 
+    public void LocalMultiMode()
+    {
+        //Debug.Log(LevelController.GetActiveLevel() + " is ActiveScene");
+        GameManager.Instance.LoadLevel("MultiLevel");
+    }
+
     public void CheckLevelForCanvasState()
     {
         Debug.Log("Active LEVEL IS " + SceneManager.GetActiveScene().name);
