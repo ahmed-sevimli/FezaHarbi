@@ -75,7 +75,7 @@ public class Character : MonoBehaviour, Shooter, Destructible
             //Play Shot Sound
             try
             {
-                SoundController.Instance.PlaySoundFX(shotSoundClip, transform, 0.3f);
+                SoundController.Instance.PlaySoundFX(shotSoundClip, transform, 0.2f);
             }
             catch(NullReferenceException e)
             {
