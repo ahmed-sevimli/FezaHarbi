@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1606639411806969789}
   - component: {fileID: 1606639411806969786}
   - component: {fileID: 1606639411806969787}
-  - component: {fileID: 1606639411806969784}
   - component: {fileID: 1606639411806969785}
+  - component: {fileID: 7890677967026726867}
   m_Layer: 0
   m_Name: PlayerShot
   m_TagString: Shots
@@ -110,21 +110,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.3581527
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1606639411806969784
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1606639411806969734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d833c29ccbd2cf9448701cda19083364, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shotBody: {fileID: 1606639411806969785}
-  fired: 0
-  owner_tag: 
 --- !u!54 &1606639411806969785
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -152,6 +137,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 1
+--- !u!114 &7890677967026726867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1606639411806969734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e5b701c186c3f446b1205173d3a44d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shotBody: {fileID: 1606639411806969785}
+  fired: 0
+  owner_tag: 
 --- !u!1 &1606639412179766316
 GameObject:
   m_ObjectHideFlags: 0
