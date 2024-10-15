@@ -158,7 +158,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1 - Time.timeScale;
         PauseMenu.SetActive(!PauseMenu.activeInHierarchy);
-        source.mute = source.mute!;
+        source.mute = !source.mute;
         unPaused = !unPaused;
     }
 }
