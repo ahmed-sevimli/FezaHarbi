@@ -44,5 +44,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MultiLevel.unity
     guid: 80f5a1f3fb3725c4cbd3d1126e8b7965
+  - enabled: 1
+    path: Assets/ExScenes/Scene1.unity
+    guid: 13027839d2d37e346bf03e9c61bf1e44
+  - enabled: 1
+    path: Assets/ExScenes/Scene2.unity
+    guid: 5f922f4fa9338e04797d2cdd9309c1b4
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
